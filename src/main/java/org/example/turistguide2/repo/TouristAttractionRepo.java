@@ -2,9 +2,10 @@ package org.example.turistguide2.repo;
 
 import org.example.turistguide2.model.Tags;
 import org.example.turistguide2.model.TouristAttraction;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public class TouristAttractionRepo {
     private List<TouristAttraction> touristAttractionList;
 
@@ -26,12 +27,12 @@ public class TouristAttractionRepo {
         return touristAttractionList;
     }
 
-    public void addTouristAttractionToList(String name, String description, String city, List<Tags> tags){
-        touristAttractionList.add(new TouristAttraction(name, description,city,tags));
+    public void addTouristAttractionToList(TouristAttraction touristAttraction){
+            touristAttractionList.add(touristAttraction);
     }
 
-    public void deleteTouristAttractionFromList(String name){
-        touristAttractionList.removeIf(touristAttraction -> touristAttraction.getName().equalsIgnoreCase(name));
+    public boolean deleteTouristAttractionFromList(String name){
+        return touristAttractionList.removeIf(touristAttraction -> touristAttraction.getName().equalsIgnoreCase(name));
     }
 
     public TouristAttraction findAttractionByName(String name){

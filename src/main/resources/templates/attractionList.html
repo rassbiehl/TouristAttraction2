@@ -47,27 +47,32 @@
         <form action="attractions/add" method="get">
             <button class="btn-submit" type="submit">Add attraction</button>
         </form>
-
     </div>
 
-        <div class="allAttractions">
+    <!-- displays the attractions based on the url -->
+        <div class="seeAttractions">
             <div class="attraction-item" th:each="attraction : ${attractions}">
-                <a class="link" th:href="@{/attractions/}" th:text="${attraction.name}"></a>
+                <a class="link" th:href="@{/attractions/{name}/tags}" th:text="${attraction.name}"></a>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
 </div>
 
 </div>
 
+<div class="about" id="about">
+    <h1 class="headline">About Discover Denmark</h1>
+
+    <p>Discover Denmark is a simple guide to cool places in Denmark.
+        It’s a test project for our studies at KEA, and we are trying things out. Hope you like it.</p>
+</div>
+
+<div class="contact" id="contact">
+        <h1 class="headline">Github names:</h1>
+        <p>rassbiehl</p>
+        <p>nial0003</p>
+        <p>Patrick</p>
+        <p>Christian</p>
+</div>
 
 </body>
 </html>
