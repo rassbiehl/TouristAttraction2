@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/static/css/main.css">
 
-<!-- font-styles -->
+    <!-- font-styles -->
     <link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap" rel="stylesheet">
 
 </head>
@@ -32,46 +32,69 @@
 
 <!-- attractions page -->
 <div class="attractions" id="attractions">
-<div class="content">
-    <h1 class="headline">Attractions to visit:</h1>
+    <div class="content">
+        <h1 class="headline">Attractions to visit:</h1>
+        <div class="searchAddEdit">
+            <!-- search function -->
+            <form action="">
+                <input type="text" class="input-field" name="search" placeholder="Search for an attraction"
+                       th:value="${param.name}">
+                <button class="btn-submit" type="submit">Search</button> <!-- submits what the user typed in -->
+            </form>
 
-    <div class="searchAddEdit">
-        <!-- search function -->
-        <form action="">
-            <input type="text" class="inputBar" name="search" placeholder="Search for an attraction"
-                   th:value="${param.name}">
-            <button class="btn-submit" type="submit">Search</button> <!-- submits what the user typed in -->
-        </form>
+            <!-- add new attraction -->
+            <form action="attractions/add" method="get">
+                <button class="btn-submit" type="submit">Add attraction</button>
+            </form>
+        </div>
 
-        <!-- add new attraction -->
-        <form action="attractions/add" method="get">
-            <button class="btn-submit" type="submit">Add attraction</button>
-        </form>
-    </div>
-
-    <!-- displays the attractions based on the url -->
+        <!-- displays the attractions based on the url -->
         <div class="seeAttractions">
             <div class="attraction-item" th:each="attraction : ${attractions}">
                 <a class="link" th:href="@{/attractions/{name}/tags}" th:text="${attraction.name}"></a>
             </div>
+
+            <div class="attraction-item">
+                <a class="link">Kea</a>
+            </div>
+            <div class="attraction-item">
+                <a class="link">Legoland</a>
+            </div>
+            <div class="attraction-item">
+                <a class="link">Frihedsgudinden</a>
+            </div>
+            <div class="attraction-item">
+                <a class="link">Randers regnskov</a>
+            </div>
+            <div class="attraction-item">
+                <a class="link">Kgs nytorv</a>
+            </div>
+            <div class="attraction-item">
+                <a class="link">Faxeladeplads</a>
+            </div>
+            <div class="attraction-item">
+                <a class="link">Lalandia</a>
+            </div>
         </div>
-</div>
+    </div>
 
 </div>
 
 <div class="about" id="about">
-    <h1 class="headline">About Discover Denmark</h1>
+    <div class=about-content">
+        <h1 class="headline">About Discover Denmark</h1>
 
-    <p>Discover Denmark is a simple guide to cool places in Denmark.
-        It’s a test project for our studies at KEA, and we are trying things out. Hope you like it.</p>
+        <p>Discover Denmark is a simple guide to cool places in Denmark.
+            It’s a test project for our studies at KEA, and we are trying things out. Hope you like it.</p>
+    </div>
 </div>
 
 <div class="contact" id="contact">
-        <h1 class="headline">Github names:</h1>
-        <p>rassbiehl</p>
-        <p>nial0003</p>
-        <p>Patrick</p>
-        <p>Christian</p>
+    <h1 class="headline">Github names:</h1>
+    <p>rassbiehl</p>
+    <p>nial0003</p>
+    <p>Patrick</p>
+    <p>Christian</p>
 </div>
 
 </body>
