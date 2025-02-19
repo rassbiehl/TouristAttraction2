@@ -14,7 +14,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap" rel="stylesheet">
 </head>
 <body>
+<div class="viewAttractionStart">
+    <div class="content2">
+        <h1 th:text="${viewAttraction.name}"></h1>
+        <p th:text="${viewAttraction.description}"></p>
 
+
+        <h2>Delete [[${viewAttraction.name}]]</h2>
+        <form th:action="@{/attractions/delete/{name}(name=${viewAttraction.name})}" method="post">
+            <button type="submit" class="btn-submit">Delete [[${viewAttraction.name}]]</button>
+        </form>
+
+        <h2>Update [[${viewAttraction.name}]]</h2>
+        <form th:action="@{/attractions/update/{name}(name=${viewAttraction.name})}" method="post">
+            <input class= "inputBar" type="text" name="name" placeholder="Enter new name...">
+            <input class= "inputBar" type="text" name="description" placeholder="Enter new description...">
+            <button class="btn-submit" type="submit">Update [[${viewAttraction.name}]]</button>
+        </form>
+        <div th:if="${message}">
+            <div th:if="${updated}">
+                <p th:text="${message}" style="color: green;"></p> <!-- Success message -->
+            </div>
+            <div th:if="${!updated}">
+                <p th:text="${message}" style="color: red;"></p> <!-- Error message -->
+            </div>
+        </div>
+
+
+
+        <div class="back">
+            <a href="/attractions#attractions">Back to Attractions</a>
+        </div>
+    </div>
+</div>
 <!-- delete attraction function -->
 
 

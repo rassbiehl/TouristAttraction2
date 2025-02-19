@@ -106,10 +106,6 @@ html::-webkit-scrollbar {
     text-align: center;
 }
 
-.attractions h1 {
-    margin-bottom: 3vw;
-}
-
 .content {
     display: flex;
     flex-direction: column;
@@ -122,11 +118,10 @@ html::-webkit-scrollbar {
 .searchAddEdit {
     margin-bottom: 0.5vw;
     display: flex;
-    gap: 1vw; /* Adds space between elements */
-    align-items: center; /* Aligns buttons and inputs */
-    justify-content: center; /* Centers them horizontally */
+    gap: 1vw 1vw;
+    align-items: center;
+    justify-content: center;
 }
-
 
 .seeAttractions {
     display: grid;
@@ -135,16 +130,20 @@ html::-webkit-scrollbar {
     padding: 20px;
     border-radius: 8px;
     width: 80%;
+    max-width: 62vw;
     color: floralwhite;
     text-align: center;
     justify-content: center;
-    margin-bottom: 2vw;
 }
 
+/* Attraction Item Styling */
 .attraction-item {
+    font-family: "Darumadrop One", sans-serif;
+    font-style: oblique;
+    font-size: 2vw;
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 8px;
-    padding: 10px 15px;
+    padding: 10px 20px;
     text-align: center;
     width: 100%;
     white-space: normal;
@@ -152,12 +151,46 @@ html::-webkit-scrollbar {
     overflow-wrap: anywhere;
 }
 
-.link {
+.inline-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    white-space: nowrap;
+    gap: 0.5vw;
+}
+
+/* Button Styling */
+.inline-buttons button {
     font-family: "Darumadrop One", sans-serif;
-    font-style: oblique;
-    font-size: 2vw;
-    color: white;
-    text-decoration: none;
+    color: floralwhite;
+    border: none;
+    border-radius: 6px;
+    font-size: 1vw;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .inline-buttons {
+        overflow-x: auto;
+    }
+
+    .inline-buttons button {
+        font-size: 0.7rem;
+        min-width: 70px;
+        padding: 5px 8px;
+    }
+}
+.btn-submit-delete {
+    background-color: #9B1C27;
+}
+
+.btn-submit-update {
+    background-color: #1E6B33;
+}
+.btn-submit-tags {
+    background-color: #065A9F;
 }
 
 /* about page ------------------------------------------------------------------------- */
@@ -234,7 +267,7 @@ p {
 
     font-family: "Darumadrop One", sans-serif;
     color: floralwhite;
-    font-size: 1.5vw;
+    font-size: 1vw;
     border-radius: 4px;
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.7);
@@ -259,7 +292,7 @@ p {
 
     font-family: "Darumadrop One", sans-serif;
     color: floralwhite;
-    font-size: 1.5vw;
+    font-size: 1vw;
     border-radius: 4px;
     background-color: rgba(0, 0, 0, 0.7);
     width: fit-content;
