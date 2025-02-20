@@ -44,13 +44,22 @@ public class TouristAttractionRepo {
         return null;
     }
 
-    public void updateTouristAttraction(String name, String newDescription, List<Tags> newTags){
-        TouristAttraction touristAttractionToBeUpdated = findAttractionByName(name);
-        if (touristAttractionToBeUpdated != null){
-            if (!newDescription.isEmpty()){
-                touristAttractionToBeUpdated.setDescription(newDescription);
-            }
-            touristAttractionToBeUpdated.setTags(newTags);
+//    public void updateTouristAttraction(String name, String newDescription, List<Tags> newTags){
+//        TouristAttraction touristAttractionToBeUpdated = findAttractionByName(name);
+//
+//        if (touristAttractionToBeUpdated != null){
+//            if (!newDescription.isEmpty()){
+//                touristAttractionToBeUpdated.setDescription(newDescription);
+//            }
+//            touristAttractionToBeUpdated.setTags(newTags);
+//        }
+//    }
+    public void updateTouristAttraction(TouristAttraction touristAttraction){
+        TouristAttraction attractionToBeUpdated = findAttractionByName(touristAttraction.getName());
+
+        if (attractionToBeUpdated != null){
+            attractionToBeUpdated.setDescription(touristAttraction.getDescription());
+            attractionToBeUpdated.setTags(touristAttraction.getTags());
         }
     }
 }
