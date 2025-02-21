@@ -11,27 +11,30 @@ import java.util.List;
 public class TouristAttractionRepoService {
     private final TouristAttractionRepo touristAttractionRepo;
 
-    public TouristAttractionRepoService(){
+    public TouristAttractionRepoService() {
         touristAttractionRepo = new TouristAttractionRepo();
     }
 
-    public List<TouristAttraction> getTouristAttractionList(){
+    public List<TouristAttraction> getTouristAttractionList() {
         return touristAttractionRepo.getTouristAttractionList();
     }
 
-    public void addTouristAttractionToList(TouristAttraction touristAttraction){
+    public void addTouristAttractionToList(TouristAttraction touristAttraction) {
         touristAttractionRepo.addTouristAttractionToList(touristAttraction);
     }
 
-    public boolean deleteTouristAttractionFromList(String name){
+    public boolean deleteTouristAttractionFromList(String name) {
         return touristAttractionRepo.deleteTouristAttractionFromList(name);
     }
 
-    public TouristAttraction findAttractionByName(String name){
+    public TouristAttraction findAttractionByName(String name) {
         return touristAttractionRepo.findAttractionByName(name);
     }
 
-    public void updateTouristAttraction(String name, String newDescription, List<Tags> newTags){
-        touristAttractionRepo.updateTouristAttraction(name,newDescription,newTags);
+    //    public void updateTouristAttraction(String name, String newDescription, List<Tags> newTags){
+//        touristAttractionRepo.updateTouristAttraction(name,newDescription,newTags);
+//    }
+    public void updateTouristAttraction(TouristAttraction touristAttraction){
+        touristAttractionRepo.updateTouristAttraction(touristAttraction);
     }
 }
