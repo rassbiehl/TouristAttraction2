@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class TouristAttractionRepoService {
+
     private final TouristAttractionRepo touristAttractionRepo;
 
     public TouristAttractionRepoService() {
