@@ -64,14 +64,14 @@ public class TouristAttractionController {
         return "";
     }
 
-    @PostMapping("attractions/update")
+    @PostMapping("/update")
     public String updateAttraction(@ModelAttribute("attraction") TouristAttraction touristAttraction,
                                    @RequestParam("tags") List<Tags> tags) {
 
         touristAttraction.setTags(tags);
         touristAttractionRepoService.updateTouristAttraction(touristAttraction);
 
-        return "";
+        return "updateAttraction";
     }
 
     @GetMapping("/add")

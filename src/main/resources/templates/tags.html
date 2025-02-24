@@ -16,6 +16,13 @@
 <body>
 <div class="viewAttractionStart">
     <div class="content2">
+        <h1 th:text="${viewAttraction.name}"></h1>
+        <p th:text="${viewAttraction.description}"></p>
+
+
+        <div class="tags" th:each="tag : ${viewAttraction.getTags}">
+            <span class="tag" th:text="${tag}"></span>
+        </div>
 
 
         <div class="back">

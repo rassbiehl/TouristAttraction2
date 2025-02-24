@@ -59,11 +59,11 @@
                     <form th:action="@{/attractions/{name}/tags(name=${attraction.name})}" method="get">
                         <button class="btn-submit-tags" type="submit">Tags</button>
                     </form>
-                    <form th:action="@{/attractions/{name}/tags(name=${attraction.name})}" method="get">
+                    <form th:action="@{/attractions/update}" method="get">
                         <button class="btn-submit-update" type="submit">Update</button>
                     </form>
 
-                    <form th:action="@{/attractions/{name}/tags(name=${attraction.name})}" method="get">
+                    <form th:action="@{/attractions/delete/{name}/(name=${attraction.name})}" method="post">
                         <button class="btn-submit-delete" type="submit">Delete</button>
                     </form>
                 </div>
