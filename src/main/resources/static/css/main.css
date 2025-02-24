@@ -104,8 +104,14 @@ html::-webkit-scrollbar {
     align-items: center;
     justify-content: center;
     text-align: center;
+
 }
 
+.link {
+    text-decoration: none;
+    font-family: "Darumadrop One", sans-serif;
+    color: floralwhite;
+}
 .content {
     display: flex;
     flex-direction: column;
