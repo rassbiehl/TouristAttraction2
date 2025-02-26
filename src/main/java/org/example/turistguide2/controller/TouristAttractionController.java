@@ -65,13 +65,27 @@ public class TouristAttractionController {
     }
 
     @PostMapping("/update")
-    public String updateAttraction(@ModelAttribute("attraction") TouristAttraction touristAttraction,
-                                   @RequestParam("tags") List<Tags> tags) {
+    public String updateAttraction(@RequestParam("name") String name,
+                                   @RequestParam(value = "description", required = false) String newDescription,
+                                   @RequestParam(value = "selectedTags", required = false) List<Tags> selectedTags) {
 
-        touristAttraction.setTags(tags);
+        TouristAttraction touristAttraction = touristAttractionRepoService.findAttractionByName(name);
+
+        if (touristAttraction == null) {
+            throw new RuntimeException("Attraction not found: " + name);
+        }
+
+        if (newDescription != null && !newDescription.trim().isEmpty()){
+            touristAttraction.setDescription(newDescription);
+        }
+
+        if (selectedTags != null) {
+            touristAttraction.setTags(selectedTags);
+        }
+
         touristAttractionRepoService.updateTouristAttraction(touristAttraction);
 
-        return "updateAttraction";
+        return "redirect:/attractions";
     }
 
     @GetMapping("/add")
