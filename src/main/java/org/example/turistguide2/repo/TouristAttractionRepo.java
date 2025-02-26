@@ -30,8 +30,23 @@ public class TouristAttractionRepo {
         return new ArrayList<>(touristAttractionList); // Returnér en kopi for at undgå utilsigtet ændring
     }
 
-    public synchronized void addTouristAttractionToList(TouristAttraction touristAttraction) {
-        touristAttractionList.add(touristAttraction);  // Tilføjer korrekt til en ArrayList
+
+    public List<TouristAttraction> getFirstAttractions() {
+        List<TouristAttraction> firstAttractions = new ArrayList<>();
+
+        // Ensure we don't exceed the actual list size
+        int limit = Math.min(8, touristAttractionList.size());
+
+        for (int i = 0; i < limit; i++) {
+            firstAttractions.add(touristAttractionList.get(i));
+        }
+
+        return firstAttractions;
+    }
+
+    public void addTouristAttractionToList(TouristAttraction touristAttraction){
+            touristAttractionList.add(touristAttraction);
+
     }
 
     public synchronized boolean deleteTouristAttractionFromList(String name) {
