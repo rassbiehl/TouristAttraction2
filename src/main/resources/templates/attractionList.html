@@ -59,7 +59,7 @@
                     <form th:action="@{/attractions/{name}/tags(name=${attraction.name})}" method="get">
                         <button class="btn-submit-tags" type="submit">Tags</button>
                     </form>
-                    <form th:action="@{/attractions/update}" method="get">
+                    <form th:action="@{/attractions/{name}/edit(name=${attraction.name})}" method="get">
                         <button class="btn-submit-update" type="submit">Update</button>
                     </form>
 

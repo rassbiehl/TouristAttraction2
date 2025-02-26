@@ -61,7 +61,7 @@ public class TouristAttractionController {
 
         model.addAttribute("attraction", touristAttraction);
         model.addAttribute("tags", Tags.values());
-        return "";
+        return "updateAttraction";
     }
 
     @PostMapping("/update")
