@@ -8,5 +8,9 @@ public enum Tags {
     NATURE,
     HISTORY,
     CULTURAL_INHERITANCE,
-    ROYAL_FAMILY
+    ROYAL_FAMILY;
+
+    public String toLowerCaseWithSpace(){
+        return this.toString().toLowerCase().replace("_", " ");
+    }
 }
