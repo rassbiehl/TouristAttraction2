@@ -48,8 +48,9 @@ public class TouristAttractionRepo {
             touristAttractionList.add(touristAttraction);
     }
 
-    public synchronized boolean deleteTouristAttractionFromList(String name) {
-        return touristAttractionList.removeIf(touristAttraction -> touristAttraction.getName().equalsIgnoreCase(name));
+    public boolean deleteTouristAttractionFromList(String name) {
+        String cleanedName = name.trim();
+        return touristAttractionList.removeIf(touristAttraction -> touristAttraction.getName().equalsIgnoreCase(cleanedName));
     }
 
     public synchronized TouristAttraction findAttractionByName(String name) {

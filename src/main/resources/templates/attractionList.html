@@ -63,7 +63,7 @@
                         <button class="btn-submit-update" type="submit">Update</button>
                     </form>
 
-                    <form th:action="@{/attractions/delete/{name}/(name=${attraction.name})}" method="post">
+                    <form th:action="@{/attractions/delete/{name}(name=${attraction.name})}" method="post">
                         <button class="btn-submit-delete" type="submit">Delete</button>
                     </form>
                 </div>

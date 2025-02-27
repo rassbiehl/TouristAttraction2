@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +76,7 @@ public class TouristAttractionController {
             throw new RuntimeException("Attraction not found: " + name);
         }
 
-        if (newDescription != null && !newDescription.trim().isEmpty()){
+        if (newDescription != null && !newDescription.trim().isEmpty()) {
             touristAttraction.setDescription(newDescription);
         }
 
@@ -85,7 +86,7 @@ public class TouristAttractionController {
 
         touristAttractionRepoService.updateTouristAttraction(touristAttraction);
 
-        return "redirect:/attractions";
+        return "redirect:/attractions#attractions";
     }
 
     @GetMapping("/add")
@@ -99,31 +100,35 @@ public class TouristAttractionController {
 
     @PostMapping("/save")
     public String saveAttraction(@ModelAttribute TouristAttraction touristAttraction,
-                                 @RequestParam List <Tags> tags){
+                                 @RequestParam List<Tags> tags) {
         touristAttraction.setTags(tags);
         touristAttractionRepoService.addTouristAttractionToList(touristAttraction);
-        return "redirect:/attractions";
+        return "redirect:/attractions#attractions";
     }
 
-    // Display the delete confirmation page
-    @GetMapping("/attractions/{name}/delete")
-    public String showDeleteForm(@PathVariable("name") String name, Model model) {
-        TouristAttraction attraction = touristAttractionRepoService.findAttractionByName(name);
-        if (attraction != null) {
-            model.addAttribute("attraction", attraction);
-            return "delete_attraction"; // Return the delete confirmation page
+    /*
+        // Display the delete confirmation page
+        @GetMapping("/attractions/{name}/delete")
+        public String showDeleteForm(@PathVariable("name") String name, Model model) {
+            TouristAttraction attraction = touristAttractionRepoService.findAttractionByName(name);
+            if (attraction != null) {
+                model.addAttribute("attraction", attraction);
+                return "delete_attraction"; // Return the delete confirmation page
+            }
+            return "error"; // Handle error if the attraction is not found
         }
-        return "error"; // Handle error if the attraction is not found
-    }
+    */
+    @PostMapping("/delete/{name}")
+    public String deleteAttraction(@PathVariable String name, RedirectAttributes redirectAttributes) {
+        boolean isDeleted = touristAttractionRepoService.deleteTouristAttractionFromList(name);
 
-    @PostMapping("/attractions/delete/{name}")
-    public String deleteAttraction(@PathVariable String name) {
-        boolean deleted = touristAttractionRepoService.deleteTouristAttractionFromList(name);
-        if (deleted) {
-            return "redirect:/attractions/list"; // Gå tilbage til listen efter sletning
+        if (isDeleted) {
+            redirectAttributes.addFlashAttribute("successMessage", "Attraction '" + name + "' deleted.");
         } else {
-            return "error"; // Vis en fejlside, hvis attraktionen ikke fandtes
+            redirectAttributes.addFlashAttribute("errorMessage", "Attraction '" + name + "' not found.");
         }
+
+        return "redirect:/attractions#attractions";
     }
 
 }
