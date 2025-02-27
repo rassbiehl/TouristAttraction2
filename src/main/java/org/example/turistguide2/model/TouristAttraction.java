@@ -1,5 +1,6 @@
 package org.example.turistguide2.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TouristAttraction {
@@ -16,12 +17,24 @@ public class TouristAttraction {
         this.tags = tags;
     }
 
+    public TouristAttraction(){
+        this.tags = new ArrayList<>();
+    }
+
     public List<Tags> getTags() {
         return tags;
     }
 
     public void setTags(List<Tags> tags) {
         this.tags = tags;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {

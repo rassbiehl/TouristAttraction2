@@ -1,31 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Attraction</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Attraction</title>
 
-  <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/static/css/main.css">
 
-  <link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap" rel="stylesheet">
+    <style>
+        .attraction-item {
+            font-family: "Darumadrop One", sans-serif;
+            font-style: oblique;
+            font-size: 2vw;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            width: 600px;
+            height: 650px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        form {
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .checkbox-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, auto);
+            gap: 10px;
+            text-align: center;
+            position: relative;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        #tagsLabel{
+            position: absolute;
+            left: -100px;
+            top: 0;
+            font-size: 1rem;
+            color: white;
+        }
+
+        .checkbox-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1rem;
+            color: white;
+        }
+
+        .checkbox-item input {
+            width: 16px;
+            height: 16px;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Add a New Attraction</h1>
+<div>
+    <nav class="navbar">
+        <div class="logo">Discover Denmark</div>
+        <ul class="nav-links">
+            <li><a href="/attractions#start">Home</a></li>
+            <li><a href="/attractions#attractions">Attractions</a></li>
+            <li><a href="/attractions#about">About</a></li>
+            <li><a href="/attractions#contact">Contact</a></li>
+        </ul>
+    </nav>
+</div>
 
-<form action="/attractions/save" method="post">
-  <label for="name">Name:</label>
-  <input type="text" id="name" name="name" required>
+<div class="attractions">
+    <div class="attraction-item">
+        <h1>Create an attraction</h1>
+        <div>
+            <form action="/attractions/save" method="post" th:object="${touristAttraction}">
+                <div style="margin-bottom: 1px">
+                    <label>name:</label>
+                    <input type="text" th:field="*{name}" required>
+                </div>
+                <div style="margin-bottom: 1px">
+                    <label>Description:</label>
+                    <textarea th:field="*{description}" required></textarea>
+                </div>
+                <div style="margin-bottom: 1px">
+                    <label>City:</label>
+                    <input type="text" th:field="*{city}" required>
+                </div>
+                <div class="checkbox-container" style="margin-bottom: 1px">
+                    <label id="tagsLabel">Tags:</label>
+                    <div th:each="tag : ${tags}" class="checkbox-item">
+                        <input type="checkbox" name="tags" th:value="${tag}">
+                        <label th:text="${tag.toLowerCaseWithSpace()}"></label>
+                    </div>
+                </div>
+                <button type="submit">Save Attraction</button>
 
-  <label for="description">Description:</label>
-  <textarea id="description" name="description" required></textarea>
+            </form>
+        </div>
 
-  <label for="city">City:</label>
-  <input type="text" id="city" name="city" required>
-
-  <button type="submit">Save</button>
-</form>
+    </div>
+</div>
 
 </body>
 </html>

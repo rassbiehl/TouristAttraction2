@@ -46,7 +46,6 @@ public class TouristAttractionRepo {
 
     public void addTouristAttractionToList(TouristAttraction touristAttraction){
             touristAttractionList.add(touristAttraction);
-
     }
 
     public synchronized boolean deleteTouristAttractionFromList(String name) {

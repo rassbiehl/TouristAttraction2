@@ -89,17 +89,20 @@ public class TouristAttractionController {
     }
 
     @GetMapping("/add")
-    public String showAddAttractionForm() {
+    public String addAttraction(Model model) {
+        TouristAttraction touristAttraction = new TouristAttraction();
+
+        model.addAttribute("tags", Tags.values());
+        model.addAttribute("touristAttraction", touristAttraction);
         return "addAttraction";
     }
 
     @PostMapping("/save")
-    public String saveAttraction(@RequestParam String name,
-                                 @RequestParam String description,
-                                 @RequestParam String city) {
-        TouristAttraction newAttraction = new TouristAttraction(name, description, city, new ArrayList<>());
-        touristAttractionRepoService.addTouristAttractionToList(newAttraction);
-        return "redirect:/attractions/list";
+    public String saveAttraction(@ModelAttribute TouristAttraction touristAttraction,
+                                 @RequestParam List <Tags> tags){
+        touristAttraction.setTags(tags);
+        touristAttractionRepoService.addTouristAttractionToList(touristAttraction);
+        return "redirect:/attractions";
     }
 
     // Display the delete confirmation page
